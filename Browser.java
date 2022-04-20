@@ -359,8 +359,7 @@ public class Browser {
      * Protected routine to determine the browser type
      * @return boolean True if the browser was detected otherwise false
      */
-    protected java.lang.Boolean checkBrowsers()
-    {
+    protected java.lang.Boolean checkBrowsers() {
         // well-known, well-used
         // Special Notes:
         // (1) Opera must be checked before FireFox due to the odd
@@ -449,8 +448,7 @@ public class Browser {
      * Determine if the user is using a BlackBerry (last updated 1.7)
      * @return boolean True if the browser is the BlackBerry browser otherwise false
      */
-    protected java.lang.Boolean checkBrowserBlackBerry()
-    {
+    protected java.lang.Boolean checkBrowserBlackBerry() {
         if (containsIgnoreCase(this.userAgent, "blackberry")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("BlackBerry".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -468,8 +466,7 @@ public class Browser {
      * Determine if the user is using an AOL User Agent (last updated 1.7)
      * @return boolean True if the browser is from AOL otherwise false
      */
-    protected java.lang.Boolean checkForAol()
-    {
+    protected java.lang.Boolean checkForAol() {
         this.setAol(false);
         this.setAolVersion(VERSION_UNKNOWN);
         if (containsIgnoreCase(this.userAgent, "aol")) {
@@ -487,8 +484,7 @@ public class Browser {
      * Determine if the browser is the GoogleBot or not (last updated 1.7)
      * @return boolean True if the browser is the GoogletBot otherwise false
      */
-    protected java.lang.Boolean checkBrowserGoogleBot()
-    {
+    protected java.lang.Boolean checkBrowserGoogleBot() {
         if (containsIgnoreCase(this.userAgent, "googlebot")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("googlebot".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -506,8 +502,7 @@ public class Browser {
      * Determine if the browser is the YandexBot or not
      * @return boolean True if the browser is the YandexBot otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexBot() {
         if (containsIgnoreCase(this.userAgent, "YandexBot")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexBot".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -525,8 +520,7 @@ public class Browser {
      * Determine if the browser is the YandexImageResizer or not
      * @return boolean True if the browser is the YandexImageResizer otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexImageResizerBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexImageResizerBot() {
         if (containsIgnoreCase(this.userAgent, "YandexImageResizer")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexImageResizer".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -544,8 +538,7 @@ public class Browser {
      * Determine if the browser is the YandexCatalog or not
      * @return boolean True if the browser is the YandexCatalog otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexCatalogBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexCatalogBot() {
         if (containsIgnoreCase(this.userAgent, "YandexCatalog")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexCatalog".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -563,8 +556,7 @@ public class Browser {
      * Determine if the browser is the YandexNews or not
      * @return boolean True if the browser is the YandexNews otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexNewsBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexNewsBot() {
         if (containsIgnoreCase(this.userAgent, "YandexNews")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexNews".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -582,8 +574,7 @@ public class Browser {
      * Determine if the browser is the YandexMetrika or not
      * @return boolean True if the browser is the YandexMetrika otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexMetrikaBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexMetrikaBot() {
         if (containsIgnoreCase(this.userAgent, "YandexMetrika")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexMetrika".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -601,8 +592,7 @@ public class Browser {
      * Determine if the browser is the YandexDirect or not
      * @return boolean True if the browser is the YandexDirect otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexDirectBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexDirectBot() {
         if (containsIgnoreCase(this.userAgent, "YandexDirect")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexDirect".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -620,8 +610,7 @@ public class Browser {
      * Determine if the browser is the YandexWebmaster or not
      * @return boolean True if the browser is the YandexWebmaster otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexWebmasterBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexWebmasterBot() {
         if (containsIgnoreCase(this.userAgent, "YandexWebmaster")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexWebmaster".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -639,8 +628,7 @@ public class Browser {
      * Determine if the browser is the YandexFavicons or not
      * @return boolean True if the browser is the YandexFavicons otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexFaviconsBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexFaviconsBot() {
         if (containsIgnoreCase(this.userAgent, "YandexFavicons")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexFavicons".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -658,8 +646,7 @@ public class Browser {
      * Determine if the browser is the YandexBlogs or not
      * @return boolean True if the browser is the YandexBlogs otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexBlogsBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexBlogsBot() {
         if (containsIgnoreCase(this.userAgent, "YandexBlogs")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexBlogs".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -677,8 +664,7 @@ public class Browser {
      * Determine if the browser is the YandexMedia or not
      * @return boolean True if the browser is the YandexMedia otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexMediaBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexMediaBot() {
         if (containsIgnoreCase(this.userAgent, "YandexMedia")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexMedia".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -696,8 +682,7 @@ public class Browser {
      * Determine if the browser is the YandexVideo or not
      * @return boolean True if the browser is the YandexVideo otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexVideoBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexVideoBot() {
         if (containsIgnoreCase(this.userAgent, "YandexVideo")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexVideo".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -715,8 +700,7 @@ public class Browser {
      * Determine if the browser is the YandexImages or not
      * @return boolean True if the browser is the YandexImages otherwise false
      */
-    protected java.lang.Boolean checkBrowserYandexImagesBot()
-    {
+    protected java.lang.Boolean checkBrowserYandexImagesBot() {
         if (containsIgnoreCase(this.userAgent, "YandexImages")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexImages".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -734,8 +718,7 @@ public class Browser {
      * Determine if the browser is the MSNBot or not (last updated 1.9)
      * @return boolean True if the browser is the MSNBot otherwise false
      */
-    protected java.lang.Boolean checkBrowserMSNBot()
-    {
+    protected java.lang.Boolean checkBrowserMSNBot() {
         if (containsIgnoreCase(this.userAgent, "msnbot")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("msnbot".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -753,8 +736,7 @@ public class Browser {
      * Determine if the browser is the BingBot or not (last updated 1.9)
      * @return boolean True if the browser is the BingBot otherwise false
      */
-    protected java.lang.Boolean checkBrowserBingBot()
-    {
+    protected java.lang.Boolean checkBrowserBingBot() {
         if (containsIgnoreCase(this.userAgent, "bingbot")) {
             java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("bingbot".toLowerCase())).split("/");
             if (result.length >= 2) {
@@ -768,6 +750,87 @@ public class Browser {
         return false;
     }
 
+    /**
+     * Determine if the browser is the W3C Validator or not (last updated 1.7)
+     * @return boolean True if the browser is the W3C Validator otherwise false
+     */
+    protected java.lang.Boolean checkBrowserW3CValidator() {
+        if (containsIgnoreCase(this.userAgent, "W3C-checklink")) {
+            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("W3C-checklink".toLowerCase())).split("/");
+            if (result.length >= 2) {
+                java.lang.String[] aversion = result[1].split(" ");
+                this.setVersion(aversion[0]);
+                this.browserName = BROWSER_W3CVALIDATOR;
+                return true;
+            }
+        } else if (containsIgnoreCase(this.userAgent, "W3C_Validator")) {
+            // Some of the Validator versions do not delineate w/ a slash - add it back in
+            java.lang.String ua = this.userAgent.replace("W3C_Validator ", "W3C_Validator/");
+            java.lang.String[] result = ua.substring(ua.toLowerCase().indexOf("W3C_Validator".toLowerCase())).split("/");
+            if (result.length >= 2) {
+                java.lang.String[] aversion = result[1].split(" ");
+                this.setVersion(aversion[0]);
+                this.browserName = BROWSER_W3CVALIDATOR;
+                return true;
+            }
+        } else if (containsIgnoreCase(this.userAgent, "W3C-mobileOK")) {
+            this.browserName = BROWSER_W3CVALIDATOR;
+            this.setMobile(true);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is the Yahoo! Slurp Robot or not (last updated 1.7)
+     * @return boolean True if the browser is the Yahoo! Slurp Robot otherwise false
+     */
+    protected java.lang.Boolean checkBrowserSlurp() {
+        if (containsIgnoreCase(this.userAgent, "slurp")) {
+            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("slurp".toLowerCase())).split("/");
+            if (result.length >= 2) {
+                java.lang.String[] aversion = result[1].split(" ");
+                this.setVersion(aversion[0]);
+                this.browserName = BROWSER_SLURP;
+                this.setRobot(true);
+                this.setMobile(false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is Brave or not
+     * @return boolean True if the browser is Brave otherwise false
+     */
+    protected java.lang.Boolean checkBrowserBrave() {
+        if (containsIgnoreCase(this.userAgent, "Brave/")) {
+            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("Brave".toLowerCase())).split("/");
+            if (result.length >= 2) {
+                java.lang.String[] aversion = result[1].split(" ");
+                this.setVersion(aversion[0]);
+                this.browserName = BROWSER_BRAVE;
+                return true;
+            }
+        } else if (containsIgnoreCase(this.userAgent, " Brave ")) {
+            this.setBrowser(BROWSER_BRAVE);
+            // this version of the UA did not ship with a version marker
+            // e.g. Mozilla/5.0 (Linux; Android 7.0; SM-G955F Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/68.0.3440.91 Mobile Safari/537.36
+            this.setVersion("");
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is Edge or not
+     * @return boolean True if the browser is Edge otherwise false
+     */
+    protected java.lang.Boolean checkBrowserEdge() {
+
+        return false;
+    }
 
     private boolean containsIgnoreCase(String str, String searchStr)     {
         if(str == null || searchStr == null) return false;
