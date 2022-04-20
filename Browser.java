@@ -1,4 +1,3 @@
-import java.util.Locale;
 
 public class Browser {
 
@@ -45,7 +44,6 @@ public class Browser {
     public static final java.lang.String BROWSER_CURL = "cURL"; // https://en.wikipedia.org/wiki/CURL
     public static final java.lang.String BROWSER_WGET = "Wget"; // https://en.wikipedia.org/wiki/Wget
     public static final java.lang.String BROWSER_UCBROWSER = "UCBrowser"; // https://www.ucweb.com/
-
 
     public static final java.lang.String BROWSER_YANDEXBOT = "YandexBot"; // http://yandex.com/bots
     public static final java.lang.String BROWSER_YANDEXIMAGERESIZER_BOT = "YandexImageResizer"; // http://yandex.com/bots
@@ -114,12 +112,12 @@ public class Browser {
     public static final java.lang.String OPERATING_SYSTEM_UNKNOWN = "unknown";
 
     public Browser () {
-        reset();
-        determine();
+        this.reset();
+        this.determine();
     }
 
     public Browser (java.lang.String userAgent) {
-        setUserAgent(userAgent);
+        this.setUserAgent(userAgent);
     }
 
     /**
@@ -144,7 +142,7 @@ public class Browser {
      * @param browserName
      * @return bool True if the browser is the specified browser
      */
-    java.lang.Boolean isBrowser(java.lang.String browserName) {
+    public java.lang.Boolean isBrowser(java.lang.String browserName) {
         return this.browserName.equals(browserName.trim());
     }
 
@@ -331,7 +329,7 @@ public class Browser {
      * @return boolean True if the browser is using chromeframe
      */
     public java.lang.Boolean isChromeFrame() {
-        return this.userAgent.contains("chromeframe");
+        return containsIgnoreCase(this.userAgent, "chromeframe");
     }
 
     /**
@@ -450,7 +448,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserBlackBerry() {
         if (containsIgnoreCase(this.userAgent, "blackberry")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("BlackBerry".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("BlackBerry".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] version = result[1].split(" ");
                 this.setVersion(version[0]);
@@ -470,7 +468,7 @@ public class Browser {
         this.setAol(false);
         this.setAolVersion(VERSION_UNKNOWN);
         if (containsIgnoreCase(this.userAgent, "aol")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("AOL".toLowerCase())).split(" ");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("AOL".toLowerCase())).split(" ");
             if (result.length >= 2) {
                 this.setAol(true);
                 this.setAolVersion(result[1].replaceAll("/[^0-9\\.a-z]/i", ""));
@@ -486,7 +484,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserGoogleBot() {
         if (containsIgnoreCase(this.userAgent, "googlebot")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("googlebot".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("googlebot".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -504,7 +502,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexBot() {
         if (containsIgnoreCase(this.userAgent, "YandexBot")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexBot".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexBot".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -522,7 +520,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexImageResizerBot() {
         if (containsIgnoreCase(this.userAgent, "YandexImageResizer")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexImageResizer".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexImageResizer".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -540,7 +538,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexCatalogBot() {
         if (containsIgnoreCase(this.userAgent, "YandexCatalog")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexCatalog".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexCatalog".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -558,7 +556,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexNewsBot() {
         if (containsIgnoreCase(this.userAgent, "YandexNews")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexNews".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexNews".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -576,7 +574,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexMetrikaBot() {
         if (containsIgnoreCase(this.userAgent, "YandexMetrika")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexMetrika".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexMetrika".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -594,7 +592,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexDirectBot() {
         if (containsIgnoreCase(this.userAgent, "YandexDirect")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexDirect".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexDirect".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -612,7 +610,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexWebmasterBot() {
         if (containsIgnoreCase(this.userAgent, "YandexWebmaster")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexWebmaster".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexWebmaster".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -630,7 +628,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexFaviconsBot() {
         if (containsIgnoreCase(this.userAgent, "YandexFavicons")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexFavicons".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexFavicons".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -648,7 +646,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexBlogsBot() {
         if (containsIgnoreCase(this.userAgent, "YandexBlogs")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexBlogs".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexBlogs".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -666,7 +664,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexMediaBot() {
         if (containsIgnoreCase(this.userAgent, "YandexMedia")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexMedia".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexMedia".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -684,7 +682,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexVideoBot() {
         if (containsIgnoreCase(this.userAgent, "YandexVideo")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexVideo".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexVideo".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -702,7 +700,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserYandexImagesBot() {
         if (containsIgnoreCase(this.userAgent, "YandexImages")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("YandexImages".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("YandexImages".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -720,7 +718,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserMSNBot() {
         if (containsIgnoreCase(this.userAgent, "msnbot")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("msnbot".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("msnbot".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -738,7 +736,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserBingBot() {
         if (containsIgnoreCase(this.userAgent, "bingbot")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("bingbot".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("bingbot".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0].replace(";", ""));
@@ -756,7 +754,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserW3CValidator() {
         if (containsIgnoreCase(this.userAgent, "W3C-checklink")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("W3C-checklink".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("W3C-checklink".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0]);
@@ -787,7 +785,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserSlurp() {
         if (containsIgnoreCase(this.userAgent, "slurp")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("slurp".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("slurp".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0]);
@@ -806,7 +804,7 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserBrave() {
         if (containsIgnoreCase(this.userAgent, "Brave/")) {
-            java.lang.String[] result = userAgent.substring(userAgent.toLowerCase().indexOf("Brave".toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("Brave".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0]);
@@ -828,9 +826,194 @@ public class Browser {
      * @return boolean True if the browser is Edge otherwise false
      */
     protected java.lang.Boolean checkBrowserEdge() {
-
+        java.lang.String name = containsIgnoreCase(this.userAgent, "Edge/") ?
+                "Edge" :
+                containsIgnoreCase(this.userAgent, "Edg/") || containsIgnoreCase(this.userAgent, "Edg/") ? "Edg" : "";
+        if (name.length() > 1) {
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf(name.toLowerCase())).split("/");
+            if (result.length >= 2) {
+                java.lang.String[] aversion = result[1].split(" ");
+                this.setVersion(aversion[0]);
+                this.setBrowser(BROWSER_EDGE);
+                if (containsIgnoreCase(this.userAgent, "Windows Phone") || containsIgnoreCase(this.userAgent, "Android")) {
+                    this.setMobile(true);
+                }
+                return true;
+            }
+        }
         return false;
     }
+
+    /**
+     * Determine if the browser is Internet Explorer or not (last updated 1.7)
+     * @return boolean True if the browser is Internet Explorer otherwise false
+     */
+    protected java.lang.Boolean checkBrowserInternetExplorer() {
+        //  Test for IE11
+        if (containsIgnoreCase(this.userAgent, "Trident/7.0; rv:11.0")) {
+            this.setBrowser(BROWSER_IE);
+            this.setVersion("11.0");
+            return true;
+        } // Test for v1 - v1.5 IE
+        else if (containsIgnoreCase(this.userAgent, "microsoft internet explorer")) {
+            this.setBrowser(BROWSER_IE);
+            this.setVersion("1.0");
+            java.lang.String result = this.userAgent.substring(this.userAgent.indexOf("/"));
+            if (result.matches("/308|425|426|474|0b1/i")) {
+                this.setVersion("1.5");
+            }
+            return true;
+        } // Test for versions > 1.5
+        else if (containsIgnoreCase(this.userAgent, "msie") && !containsIgnoreCase(this.userAgent, "opera")) {
+            // See if the browser is the odd MSN Explorer
+            java.lang.String[] result;
+            if (containsIgnoreCase(this.userAgent, "msnb")) {
+                java.lang.String agentReplace = this.userAgent.replace(";", "; ");
+                result = agentReplace.substring(agentReplace.indexOf("MSN")).split(" ");
+                if (result.length >= 2) {
+                    this.setBrowser(BROWSER_MSN);
+                    this.setVersion(result[1].replace("(", "").replace(")", "").replace(";", ""));
+                    return true;
+                }
+            }
+            java.lang.String agentReplace = this.userAgent.replace(";", "; ");
+            result = agentReplace.substring(agentReplace.indexOf("msie")).split(" ");
+            if (result.length >= 2) {
+                this.setBrowser(BROWSER_IE);
+                this.setVersion(result[1].replace("(", "").replace(")", "").replace(";", ""));
+                if (containsIgnoreCase(this.userAgent, "IEMobile")) {
+                    this.setBrowser(BROWSER_POCKET_IE);
+                    this.setMobile(true);
+                }
+                return true;
+            }
+        } // Test for versions > IE 10
+        else if (containsIgnoreCase(this.userAgent, "trident")) {
+            this.setBrowser(BROWSER_IE);
+            java.lang.String[] result = this.userAgent.split("rv:");
+            if (result.length >= 2) {
+                this.setVersion(result[1].replaceAll("/[^0-9.]+/", ""));
+                this.userAgent = this.userAgent.replace("Mozilla", "MSIE").replace("Gecko", "MSIE");
+            }
+        } // Test for Pocket IE
+        else if (containsIgnoreCase(this.userAgent, "mspie") || containsIgnoreCase(this.userAgent, "pocket")) {
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.indexOf("mspie")).split(" ");
+            if (result.length >= 2) {
+                this.setPlatform(PLATFORM_WINDOWS_CE);
+                this.setBrowser(BROWSER_POCKET_IE);
+                this.setMobile(true);
+                if (containsIgnoreCase(this.userAgent, "mspie")) {
+                    this.setVersion(result[1]);
+                } else {
+                    java.lang.String[] aversion = userAgent.split("/");
+                    if (aversion.length >= 2) {
+                        this.setVersion(aversion[1]);
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is Opera or not (last updated 1.7)
+     * @return boolean True if the browser is Opera otherwise false
+     */
+    protected java.lang.Boolean checkBrowserOpera() {
+        if (containsIgnoreCase(this.userAgent, "opera mini")) {
+            java.lang.String resultant = this.userAgent.substring(this.userAgent.indexOf("opera mini"));
+            if (resultant.matches("/\\//")) {
+                java.lang.String[] result = resultant.split("/");
+                if (result.length >= 2) {
+                    java.lang.String[] aversion = result[1].split(" ");
+                    this.setVersion(aversion[0]);
+                }
+            } else {
+                java.lang.String[] aversion = this.userAgent.substring(this.userAgent.indexOf("opera mini")).split(" ");
+                if (aversion.length >= 2) {
+                    this.setVersion(aversion[1]);
+                }
+            }
+            this.browserName = BROWSER_OPERA_MINI;
+            this.setMobile(true);
+            return true;
+        } else if (containsIgnoreCase(this.userAgent, "opera")) {
+            java.lang.String resultant = this.userAgent.substring(this.userAgent.indexOf("opera"));
+            if (resultant.matches("/Version\\/")) {
+                java.lang.String[] result = resultant.split("/Version");
+                if (result.length >= 2) {
+                    this.setVersion(result[1]);
+                }
+            } else if (resultant.matches("/\\//")) {
+                java.lang.String[] result = resultant.replace("(", " ").split("/");
+                if (result.length >= 2) {
+                    java.lang.String[] aversion = result[1].split(" ");
+                    this.setVersion(aversion[0]);
+                }
+            } else {
+                java.lang.String[] aversion = resultant.substring(resultant.indexOf("opera")).split(" ");
+                this.setVersion(aversion.length >= 2 ? aversion[1] : "");
+            }
+            if (containsIgnoreCase(this.userAgent, "Opera Mobi")) {
+                this.setMobile(true);
+            }
+            this.browserName = BROWSER_OPERA;
+            return true;
+        } else if (containsIgnoreCase(this.userAgent, "OPR")) {
+            java.lang.String resultant = this.userAgent.substring(this.userAgent.indexOf("OPR"));
+            if (resultant.matches("/\\//")) {
+                java.lang.String[] result = resultant.replace("(", " ").split("/");
+                if (result.length >= 2) {
+                    java.lang.String[] aversion = result[1].split(" ");
+                    this.setVersion(aversion[0]);
+                }
+            }
+            if (containsIgnoreCase(this.userAgent, "Mobile")) {
+                this.setMobile(true);
+            }
+            this.browserName = BROWSER_OPERA;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is Chrome or not (last updated 1.7)
+     * @return boolean True if the browser is Chrome otherwise false
+     */
+    protected java.lang.Boolean checkBrowserChrome() {
+        if (containsIgnoreCase(this.userAgent, "Chrome")) {
+            // TODO need preg_split on php init
+            java.lang.String[] result = this.userAgent.substring(this.userAgent.toLowerCase().indexOf("Chrome".toLowerCase())).split("/");
+            if (result.length >= 2) {
+                java.lang.String[] aversion = result[1].split(" ");
+                this.setVersion(aversion[0]);
+                this.setBrowser(BROWSER_CHROME);
+                //Chrome on Android
+                if (containsIgnoreCase(this.userAgent, "Android")) {
+                    if (containsIgnoreCase(this.userAgent, "Mobile")) {
+                        this.setMobile(true);
+                    } else {
+                        this.setTablet(true);
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     private boolean containsIgnoreCase(String str, String searchStr)     {
         if(str == null || searchStr == null) return false;
