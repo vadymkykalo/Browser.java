@@ -1105,6 +1105,37 @@ public class Browser {
         return false;
     }
 
+    /**
+     * Determine if the browser is Phoenix or not (last updated 1.7)
+     * @return boolean True if the browser is Phoenix otherwise false
+     */
+    protected java.lang.Boolean checkBrowserPhoenix() {
+        if (containsIgnoreCase(this.userAgent, "Phoenix")) {
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Phoenix".toLowerCase())).split("/");
+            if (aversion.length >= 2) {
+                this.setVersion(aversion[1]);
+                this.setBrowser(BROWSER_PHOENIX);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is Firebird or not (last updated 1.7)
+     * @return boolean True if the browser is Firebird otherwise false
+     */
+    protected java.lang.Boolean checkBrowserFirebird() {
+        if (containsIgnoreCase(this.userAgent, "Firebird")) {
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Firebird".toLowerCase())).split("/");
+            if (aversion.length >= 2) {
+                this.setVersion(aversion[1]);
+                this.setBrowser(BROWSER_FIREBIRD);
+                return true;
+            }
+        }
+        return false;
+    }
 
     private boolean containsIgnoreCase(String str, String searchStr)     {
         if(str == null || searchStr == null) return false;
