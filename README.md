@@ -5,10 +5,9 @@ Helps detect the user's browser and platform at the JAVA level via the user agen
 ## Typical Usage:
 
 ```java
-Browser browser = new Browser();
-if (Browser.BROWSER_FIREFOX.equals(browser.getBrowser()) && browser.getVersion() >= 10) {
-	System.out.println("You have FireFox version 10 or greater");
-}
+String userAgent = "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16";
+Browser browser = new Browser(userAgent);
+System.out.println("You have Browser: " + browser);
 ```
 
 ## Browser Detection
