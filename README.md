@@ -2,7 +2,7 @@
 
 Helps detect the user's browser and platform at the JAVA level via the user agent
 
-This file has been rewritten from https://github.com/cbschuld/Browser.php
+This repository based on https://github.com/cbschuld/Browser.php and was rewritten on JAVA
 
 ## Typical Usage:
 
