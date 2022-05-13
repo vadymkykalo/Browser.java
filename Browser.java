@@ -201,7 +201,7 @@ public class Browser {
      * @param version The version of the Browser
      */
     public void setVersion(java.lang.String version) {
-        this.version = version.replaceAll("/[^0-9,.,a-z,A-Z-]/", "");
+        this.version = version.replaceAll("[^0-9,.,a-z,A-Z-]", "");
     }
 
     /**
@@ -217,7 +217,7 @@ public class Browser {
      * @param version The version of AOL
      */
     public void setAolVersion(java.lang.String version) {
-        this.aolVersion = version.replaceAll("/[^0-9,.,a-z,A-Z-]/", "");
+        this.aolVersion = version.replaceAll("[^0-9,.,a-z,A-Z-]", "");
     }
 
     /**
@@ -481,7 +481,7 @@ public class Browser {
             java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("AOL".toLowerCase())).split(" ");
             if (result.length >= 2) {
                 this.setAol(true);
-                this.setAolVersion(result[1].replaceAll("/[^0-9\\.a-z]/i", ""));
+                this.setAolVersion(result[1].replaceAll("[^0-9\\.a-z]", ""));
                 return true;
             }
         }
@@ -902,7 +902,7 @@ public class Browser {
             this.setBrowser(BROWSER_IE);
             java.lang.String[] result = this.userAgent.split("rv:");
             if (result.length >= 2) {
-                this.setVersion(result[1].replaceAll("/[^0-9.]+/", ""));
+                this.setVersion(result[1].replaceAll("[^0-9.]+", ""));
                 this.userAgent = this.userAgent.replace("Mozilla", "MSIE").replace("Gecko", "MSIE");
             }
         } // Test for Pocket IE
@@ -977,7 +977,7 @@ public class Browser {
             this.browserName = BROWSER_OPERA;
             return true;
         } else if (containsIgnoreCase(this.userAgent, "OPR")) {
-            java.lang.String resultant = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("opr".toLowerCase()));
+            java.lang.String resultant = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("OPR".toLowerCase()));
             java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/\\//", java.util.regex.Pattern.CASE_INSENSITIVE);
             java.util.regex.Matcher matcherSlash = PATTERN_SLASH.matcher(resultant);
             if (matcherSlash.find()) {
@@ -1161,17 +1161,17 @@ public class Browser {
      * @return boolean True if the browser is Netscape Navigator 9+ otherwise false
      */
     protected java.lang.Boolean checkBrowserNetscapeNavigator9Plus() {
-        java.util.regex.Pattern PATTERN_NAVIGATOR = java.util.regex.Pattern.compile("/Navigator\\/([^ ]*)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_NAVIGATOR = java.util.regex.Pattern.compile("Navigator\\/([^ ]*)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherNav = PATTERN_NAVIGATOR.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_NETSCAPE = java.util.regex.Pattern.compile("/Netscape6?\\/([^ ]*)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_NETSCAPE = java.util.regex.Pattern.compile("Netscape6?\\/([^ ]*)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherNet = PATTERN_NETSCAPE.matcher(this.userAgent);
         if (containsIgnoreCase(this.userAgent, "Firefox") && matcherNav.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Navigator".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Navigator".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 1 ? aversion[0] : "");
             this.setBrowser(BROWSER_NETSCAPE_NAVIGATOR);
             return true;
         } else if (!containsIgnoreCase(this.userAgent, "Firefox") && matcherNet.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Netscape6".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Netscape6".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 1 ? aversion[0] : "");
             this.setBrowser(BROWSER_NETSCAPE_NAVIGATOR);
             return true;
@@ -1184,10 +1184,10 @@ public class Browser {
      * @return boolean True if the browser is Shiretoko otherwise false
      */
     protected java.lang.Boolean checkBrowserShiretoko() {
-        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("/Shiretoko\\/([^ ]*)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("Shiretoko\\/([^ ]*)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcher = PATTERN.matcher(this.userAgent);
         if (containsIgnoreCase(this.userAgent, "Mozilla") && matcher.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Shiretoko".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Shiretoko".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 1 ? aversion[0] : "");
             this.setBrowser(BROWSER_SHIRETOKO);
             return true;
@@ -1200,10 +1200,10 @@ public class Browser {
      * @return boolean True if the browser is Ice Cat otherwise false
      */
     protected java.lang.Boolean checkBrowserIceCat() {
-        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("/IceCat\\/([^ ]*)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("IceCat\\/([^ ]*)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcher = PATTERN.matcher(this.userAgent);
         if (containsIgnoreCase(this.userAgent, "Mozilla") && matcher.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/IceCat".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("IceCat".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 1 ? aversion[0] : "");
             this.setBrowser(BROWSER_ICECAT);
             return true;
@@ -1216,10 +1216,10 @@ public class Browser {
      * @return boolean True if the browser is Nokia otherwise false
      */
     protected java.lang.Boolean checkBrowserNokia() {
-        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("/Nokia([^\\/]+)\\/([^ SP]+)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("Nokia([^\\/]+)\\/([^ SP]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcher = PATTERN.matcher(this.userAgent);
         if (matcher.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Nokia".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Nokia".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 3 ? aversion[2] : "");
             if (containsIgnoreCase(this.userAgent, "Series60") || containsIgnoreCase(this.userAgent, "S60")) {
                 this.setBrowser(BROWSER_NOKIA_S60);
@@ -1237,20 +1237,20 @@ public class Browser {
      * @return boolean True if the browser is Palemoon otherwise false
      */
     protected java.lang.Boolean checkBrowserPalemoon() {
-        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("/Palemoon[\\/ \\(]([^ ;\\)]+)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("Palemoon[\\/ \\(]([^ ;\\)]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcher = PATTERN.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_LITERAL = java.util.regex.Pattern.compile("/Palemoon([0-9a-zA-Z\\.]+)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_LITERAL = java.util.regex.Pattern.compile("Palemoon([0-9a-zA-Z\\.]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherLiteral = PATTERN_LITERAL.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_I = java.util.regex.Pattern.compile("/Palemoon/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_I = java.util.regex.Pattern.compile("Palemoon", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherI = PATTERN_I.matcher(this.userAgent);
         if (!containsIgnoreCase(this.userAgent, "safari")) {
             if (matcher.find()) {
-                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Palemoon".toLowerCase())).split("/");
+                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Palemoon".toLowerCase())).split("/");
                 this.setVersion(aversion.length >= 2 ? aversion[1] : "");
                 this.setBrowser(BROWSER_PALEMOON);
                 return true;
             } else if (matcherLiteral.find()) {
-                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Palemoon".toLowerCase())).split("/");
+                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Palemoon".toLowerCase())).split("/");
                 this.setVersion(aversion.length >= 2 ? aversion[1] : "");
                 this.setBrowser(BROWSER_PALEMOON);
                 return true;
@@ -1268,7 +1268,7 @@ public class Browser {
      * @return boolean True if the browser is UCBrowser otherwise false
      */
     protected java.lang.Boolean checkBrowserUCBrowser() {
-        java.util.regex.Pattern PATTERN_UC = java.util.regex.Pattern.compile("/UC ?Browser\\/?([\\d\\.]+)/", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_UC = java.util.regex.Pattern.compile("UC ?Browser\\/?([\\d\\.]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherUc = PATTERN_UC.matcher(this.userAgent);
         if (matcherUc.find()) {
             java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Browser".toLowerCase())).split("/");
@@ -1289,17 +1289,17 @@ public class Browser {
      * @return boolean True if the browser is Firefox otherwise false
      */
     protected java.lang.Boolean checkBrowserFirefox() {
-        java.util.regex.Pattern PATTERN_FIREFOX = java.util.regex.Pattern.compile("/Firefox[\\/ \\(]([^ ;\\)]+)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_FIREFOX = java.util.regex.Pattern.compile("Firefox[\\/ \\(]([^ ;\\)]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherFirefox = PATTERN_FIREFOX.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_FIREFOX_LITERAL = java.util.regex.Pattern.compile("/Firefox([0-9a-zA-Z\\.]+)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_FIREFOX_LITERAL = java.util.regex.Pattern.compile("Firefox([0-9a-zA-Z\\.]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherFirefoxLiteral = PATTERN_FIREFOX_LITERAL.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_FXI = java.util.regex.Pattern.compile("/FxiOS[\\/ \\(]([^ ;\\)]+)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_FXI = java.util.regex.Pattern.compile("FxiOS[\\/ \\(]([^ ;\\)]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherFxi = PATTERN_FXI.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_F = java.util.regex.Pattern.compile("/Firefox$/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_F = java.util.regex.Pattern.compile("Firefox$", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherF = PATTERN_F.matcher(this.userAgent);
         if (!containsIgnoreCase(this.userAgent, "safari")) {
             if (matcherFirefox.find()) {
-                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Firefox".toLowerCase())).split("/");
+                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Firefox".toLowerCase())).split("/");
                 this.setVersion(aversion.length >= 2 ? aversion[1] : "");
                 this.setBrowser(BROWSER_FIREFOX);
                 //Firefox on Android
@@ -1312,7 +1312,7 @@ public class Browser {
                 }
                 return true;
             } else if (matcherFirefoxLiteral.find()) {
-                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/Firefox".toLowerCase())).split("/");
+                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Firefox".toLowerCase())).split("/");
                 this.setVersion(aversion.length >= 2 ? aversion[1] : "");
                 this.setBrowser(BROWSER_FIREFOX);
                 return true;
@@ -1322,7 +1322,7 @@ public class Browser {
                 return true;
             }
         } else if (matcherFxi.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/FxiOS".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("FxiOS".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 2 ? aversion[1] : "");
             this.setBrowser(BROWSER_FIREFOX);
             //Firefox on Android
@@ -1360,11 +1360,11 @@ public class Browser {
      * @return boolean True if the browser is Mozilla otherwise false
      */
     protected java.lang.Boolean checkBrowserMozilla() {
-        java.util.regex.Pattern PATTERN_RV_LITERAL = java.util.regex.Pattern.compile("/rv:[0-9].[0-9][a-b]?/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_RV_LITERAL = java.util.regex.Pattern.compile("rv:[0-9].[0-9][a-b]?", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherRvLiteral = PATTERN_RV_LITERAL.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_RV = java.util.regex.Pattern.compile("/rv:[0-9]\\.[0-9]/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_RV = java.util.regex.Pattern.compile("rv:[0-9]\\.[0-9]", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherRv = PATTERN_RV.matcher(this.userAgent);
-        java.util.regex.Pattern PATTERN_MOZILLA = java.util.regex.Pattern.compile("/mozilla\\/([^ ]*)/i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN_MOZILLA = java.util.regex.Pattern.compile("mozilla\\/([^ ]*)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherMozilla = PATTERN_MOZILLA.matcher(this.userAgent);
         if (containsIgnoreCase(this.userAgent, "mozilla") && matcherRvLiteral.find() && !containsIgnoreCase(this.userAgent, "netscape")) {
             java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("rv:".toLowerCase())).split(" ");
@@ -1377,7 +1377,7 @@ public class Browser {
             this.setBrowser(BROWSER_MOZILLA);
             return true;
         } else if (containsIgnoreCase(this.userAgent, "mozilla") && matcherMozilla.find() && !containsIgnoreCase(this.userAgent, "netscape")) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("/mozilla".toLowerCase())).split("/");
+            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("mozilla".toLowerCase())).split("/");
             this.setVersion(aversion.length >= 2 ? aversion[1] : "");
             this.setBrowser(BROWSER_MOZILLA);
             return true;
@@ -1713,7 +1713,7 @@ public class Browser {
      * @return boolean True if the browser is Wget otherwise false
      */
     protected java.lang.Boolean checkBrowserWget() {
-        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("!^Wget/([^ ]+)!i", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Pattern PATTERN = java.util.regex.Pattern.compile("^Wget/([^ ]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcher = PATTERN.matcher(this.userAgent);
         if (matcher.find()) {
             java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Wget".toLowerCase())).split("/");
