@@ -3,9 +3,40 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.springframework</groupId>
-    <artifactId>vkykalo-browser-maven</artifactId>
+    <artifactId>Browser.java</artifactId>
     <packaging>jar</packaging>
     <version>0.1.0</version>
+    <name>Parser user-agent</name>
+
+    <description>Parser user-agent string to object</description>
+    <url>https://github.com/vadymkykalo/Browser.java</url>
+    <inceptionYear>2022</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>vadymkykalo</id>
+            <name>Vadym Kykalo</name>
+            <email>vadymkykalo@gmail.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:ssh://git@github.com:vadymkykalo/Browser.java.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:vadymkykalo/Browser.java.git</developerConnection>
+        <tag>Browser.java-0.1.0</tag>
+        <url>https://github.com/vadymkykalo/Browser.java</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/vadymkykalo/Browser.java/issues</url>
+    </issueManagement>
 
     <build>
         <plugins>
