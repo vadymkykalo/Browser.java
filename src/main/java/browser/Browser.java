@@ -1,3 +1,5 @@
+package browser;
+
 /**
  * File: Browser.java
  * Author: Vadym Kykalo (https://www.linkedin.com/in/vadym-kykalo/)
