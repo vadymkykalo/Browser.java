@@ -1323,7 +1323,7 @@ public class Browser {
             }
         } else if (matcherFxi.find()) {
             java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("FxiOS".toLowerCase())).split("/");
-            this.setVersion(aversion.length >= 2 ? aversion[1] : "");
+            this.setVersion(aversion.length >= 2 ? aversion[1].split(" ")[0] : "");
             this.setBrowser(BROWSER_FIREFOX);
             //Firefox on Android
             if (containsIgnoreCase(this.userAgent, "Android") || containsIgnoreCase(this.userAgent, "iPhone")) {
