@@ -36,9 +36,6 @@ public class ChromeTest {
     @Test
     public void testChromeUserAgent() {
         for (List<String> row : data) {
-
-            System.out.println(row.get(0));
-
             Browser browser = new Browser(row.get(0));
 
             Assert.assertEquals(row.get(2), browser.getBrowser());
