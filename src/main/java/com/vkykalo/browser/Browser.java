@@ -843,7 +843,14 @@ public class Browser {
             this.setBrowser(BROWSER_BRAVE);
             // this version of the UA did not ship with a version marker
             // e.g. Mozilla/5.0 (Linux; Android 7.0; SM-G955F Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/68.0.3440.91 Mobile Safari/537.36
-            this.setVersion("");
+            if (containsIgnoreCase(this.userAgent, "android")) {
+                this.setVersion("Android");
+            } else if (containsIgnoreCase(this.userAgent, "linux")) {
+                this.setVersion("Linux");
+            } else {
+                this.setVersion("");
+            }
+
             return true;
         }
         return false;
@@ -858,10 +865,10 @@ public class Browser {
                 "Edge" :
                 containsIgnoreCase(this.userAgent, "Edg/") || containsIgnoreCase(this.userAgent, "Edg/") ? "Edg" : "";
         if (name.length() == 0 && containsIgnoreCase(this.userAgent, "EdgA/")) {
-            name = "Edge";
+            name = "Edga";
         }
         if (name.length() > 1) {
-            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf(this.userAgent.toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf(name.toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0]);
