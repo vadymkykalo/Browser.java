@@ -857,8 +857,11 @@ public class Browser {
         java.lang.String name = containsIgnoreCase(this.userAgent, "Edge/") ?
                 "Edge" :
                 containsIgnoreCase(this.userAgent, "Edg/") || containsIgnoreCase(this.userAgent, "Edg/") ? "Edg" : "";
+        if (name.length() == 0 && containsIgnoreCase(this.userAgent, "EdgA/")) {
+            name = "Edge";
+        }
         if (name.length() > 1) {
-            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf(name.toLowerCase())).split("/");
+            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf(this.userAgent.toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
                 this.setVersion(aversion[0]);
@@ -1334,8 +1337,19 @@ public class Browser {
         java.util.regex.Matcher matcherF = PATTERN_F.matcher(this.userAgent);
         if (!containsIgnoreCase(this.userAgent, "safari")) {
             if (matcherFirefox.find()) {
-                java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Firefox".toLowerCase())).split("/");
-                this.setVersion(aversion.length >= 2 ? aversion[1] : "");
+                String ver = "";
+                java.lang.String[] result;
+                if (matcherFirefox.group(0).charAt(7) == '(') {
+                    result = matcherFirefox.group(0).split("\\(");
+                } else {
+                    result = matcherFirefox.group(0).split("/");
+                }
+                if (result.length >= 2) {
+                    ver = result[1].split(" ")[0];
+                } else if (result.length >= 1) {
+                    ver = result[0].split(" ")[1];
+                }
+                this.setVersion(ver);
                 this.setBrowser(BROWSER_FIREFOX);
                 //Firefox on Android
                 if (containsIgnoreCase(this.userAgent, "Android") || containsIgnoreCase(this.userAgent, "iPhone")) {
@@ -1348,11 +1362,25 @@ public class Browser {
                 return true;
             } else if (matcherFirefoxLiteral.find()) {
                 java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Firefox".toLowerCase())).split("/");
-                this.setVersion(aversion.length >= 2 ? aversion[1] : "");
+                String ver = "";
+                if (aversion.length >= 2) {
+                    ver = aversion[1].split(" ")[0];
+                } else if (aversion.length >= 1) {
+                    ver = aversion[0].substring(7).split(" ")[0];
+                }
+                this.setVersion(ver);
                 this.setBrowser(BROWSER_FIREFOX);
                 return true;
             } else if (matcherF.find()) {
-                this.setVersion("");
+                if (containsIgnoreCase(this.userAgent, "linux")) {
+                    this.setVersion("Linux");
+                } else if (containsIgnoreCase(this.userAgent, "windows")) {
+                    this.setVersion("Windows");
+                } else if (containsIgnoreCase(this.userAgent, "macintosh")) {
+                    this.setVersion("Macintosh");
+                } else {
+                    this.setVersion("");
+                }
                 this.setBrowser(BROWSER_FIREFOX);
                 return true;
             }
