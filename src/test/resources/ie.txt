@@ -7,7 +7,7 @@ Mozilla/2.0 (compatible; MSIE 3.02; Windows 3.1)	Browser	Internet Explorer	3.02	
 Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)	Browser	Internet Explorer	3.03	Windows	Windows 3.1		
 Mozilla/2.0 (compatible; MSIE 3.0; Windows 3.1)	Browser	Internet Explorer	3.0	Windows	Windows 3.1		
 Mozilla/2.0 (compatible; MSIE 3.0; Windows 95)	Browser	Internet Explorer	3.0	Windows	Windows 95		
-Mozilla/2.0 (compatible; MSIE 3.0B; Windows NT)	Browser	Internet Explorer	3.0B	Windows	Windows NT		
+Mozilla/2.0 (compatible; MSIE 3.0B; Windows NT)	Browser	Internet Explorer	3.0b	Windows	Windows NT
 Mozilla/2.0 (compatible; MSIE 4.0; Windows 98)	Browser	Internet Explorer	4.0	Windows	Windows 98		
 Mozilla/3.0 (compatible; MSIE 3.0; Windows NT 5.0)	Browser	Internet Explorer	3.0	Windows	Windows 2000		
 Mozilla/4.0 (Compatible; MSIE 4.0)	Browser	Internet Explorer	4.0	unknown	unknown		

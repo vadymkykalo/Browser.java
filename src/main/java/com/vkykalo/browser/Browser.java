@@ -896,16 +896,16 @@ public class Browser {
             // See if the browser is the odd MSN Explorer
             java.lang.String[] result;
             if (containsIgnoreCase(this.userAgent, "msnb")) {
-                java.lang.String agentReplace = this.userAgent.replace(";", "; ");
-                result = agentReplace.substring(agentReplace.indexOf("MSN")).split(" ");
+                java.lang.String agentReplace = this.userAgent.toLowerCase().replace(";", "; ");
+                result = agentReplace.toLowerCase().substring(agentReplace.toLowerCase().indexOf("MSN".toLowerCase())).split(" ");
                 if (result.length >= 2) {
                     this.setBrowser(BROWSER_MSN);
                     this.setVersion(result[1].replace("(", "").replace(")", "").replace(";", ""));
                     return true;
                 }
             }
-            java.lang.String agentReplace = this.userAgent.replace(";", "; ");
-            result = agentReplace.substring(agentReplace.indexOf("msie")).split(" ");
+            java.lang.String agentReplace = this.userAgent.replace(";", "; ").toLowerCase();
+            result = agentReplace.toLowerCase().substring(agentReplace.toLowerCase().indexOf("msie".toLowerCase())).split(" ");
             if (result.length >= 2) {
                 this.setBrowser(BROWSER_IE);
                 this.setVersion(result[1].replace("(", "").replace(")", "").replace(";", ""));
@@ -921,11 +921,11 @@ public class Browser {
             java.lang.String[] result = this.userAgent.split("rv:");
             if (result.length >= 2) {
                 this.setVersion(result[1].replaceAll("[^0-9.]+", ""));
-                this.userAgent = this.userAgent.replace("Mozilla", "MSIE").replace("Gecko", "MSIE");
+                this.userAgent = this.userAgent.toLowerCase().replace("Mozilla".toLowerCase(), "MSIE".toLowerCase()).replace("Gecko".toLowerCase(), "MSIE".toLowerCase());
             }
         } // Test for Pocket IE
         else if (containsIgnoreCase(this.userAgent, "mspie") || containsIgnoreCase(this.userAgent, "pocket")) {
-            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("mspie")).split(" ");
+            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("mspie".toLowerCase())).split(" ");
             if (result.length >= 2) {
                 this.setPlatform(PLATFORM_WINDOWS_CE);
                 this.setBrowser(BROWSER_POCKET_IE);
