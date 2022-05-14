@@ -35,9 +35,12 @@ public class OperaTest {
 
     @Test
     public void testOperaUserAgent() {
+
         for (List<String> row : data) {
             Browser browser = new Browser(row.get(0));
+
             Assert.assertEquals(row.get(2), browser.getBrowser());
+            Assert.assertEquals(row.get(3), browser.getVersion());
         }
     }
 }

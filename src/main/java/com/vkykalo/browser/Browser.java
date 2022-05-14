@@ -951,7 +951,7 @@ public class Browser {
     protected java.lang.Boolean checkBrowserOpera() {
         if (containsIgnoreCase(this.userAgent, "opera mini")) {
             java.lang.String resultant = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("opera mini"));
-            java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/\\//", java.util.regex.Pattern.CASE_INSENSITIVE);
+            java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/", java.util.regex.Pattern.CASE_INSENSITIVE);
             java.util.regex.Matcher matcherSlash = PATTERN_SLASH.matcher(resultant);
             if (matcherSlash.find()) {
                 java.lang.String[] result = resultant.split("/");
@@ -970,12 +970,12 @@ public class Browser {
             return true;
         } else if (containsIgnoreCase(this.userAgent, "opera")) {
             java.lang.String resultant = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("opera"));
-            java.util.regex.Pattern PATTERN_VERSION = java.util.regex.Pattern.compile("version\\/(1*.*)", java.util.regex.Pattern.CASE_INSENSITIVE);
+            java.util.regex.Pattern PATTERN_VERSION = java.util.regex.Pattern.compile("version\\/(1*.*)$", java.util.regex.Pattern.CASE_INSENSITIVE);
             java.util.regex.Matcher matcherVersion = PATTERN_VERSION.matcher(resultant);
-            java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/\\//", java.util.regex.Pattern.CASE_INSENSITIVE);
+            java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/", java.util.regex.Pattern.CASE_INSENSITIVE);
             java.util.regex.Matcher matcherSlash = PATTERN_SLASH.matcher(resultant);
             if (matcherVersion.find()) {
-                java.lang.String[] result = resultant.substring(this.userAgent.toLowerCase().indexOf("version")).split("/");
+                java.lang.String[] result = resultant.substring(resultant.toLowerCase().indexOf("version")).split("/");
                 if (result.length >= 2) {
                     this.setVersion(result[1]);
                 }
@@ -996,7 +996,7 @@ public class Browser {
             return true;
         } else if (containsIgnoreCase(this.userAgent, "OPR")) {
             java.lang.String resultant = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("OPR".toLowerCase()));
-            java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/\\//", java.util.regex.Pattern.CASE_INSENSITIVE);
+            java.util.regex.Pattern PATTERN_SLASH = java.util.regex.Pattern.compile("/", java.util.regex.Pattern.CASE_INSENSITIVE);
             java.util.regex.Matcher matcherSlash = PATTERN_SLASH.matcher(resultant);
             if (matcherSlash.find()) {
                 java.lang.String[] result = resultant.replace("(", " ").split("/");
