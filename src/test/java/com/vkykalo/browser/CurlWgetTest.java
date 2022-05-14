@@ -19,7 +19,7 @@ public class CurlWgetTest {
         curlFirst.add("7.37.1");
         List<String> curlSecond = new ArrayList<>();
         curlSecond.add("Wget/1.16 (darwin14.0.0)");
-        curlSecond.add(Browser.BROWSER_CURL);
+        curlSecond.add(Browser.BROWSER_WGET);
         curlSecond.add("1.16");
         data.add(curlFirst);
         data.add(curlSecond);
@@ -29,7 +29,8 @@ public class CurlWgetTest {
     public void testCurlWgetUserAgent() {
         for (List<String> row : data) {
             Browser browser = new Browser(row.get(0));
-            Assert.assertEquals(row.get(2), browser.getBrowser());
+            Assert.assertEquals(row.get(1), browser.getBrowser());
+            Assert.assertEquals(row.get(2), browser.getVersion());
         }
     }
 }

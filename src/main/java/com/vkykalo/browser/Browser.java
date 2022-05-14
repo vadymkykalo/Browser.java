@@ -1735,7 +1735,7 @@ public class Browser {
         java.util.regex.Matcher matcher = PATTERN.matcher(this.userAgent);
         if (matcher.find()) {
             java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Wget".toLowerCase())).split("/");
-            this.setVersion(result.length >= 2 ? result[1] : "");
+            this.setVersion(result.length >= 2 ? result[1].split(" ")[0] : "");
             this.setBrowser(BROWSER_WGET);
             return true;
         }
