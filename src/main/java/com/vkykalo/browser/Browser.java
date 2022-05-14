@@ -1030,11 +1030,16 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserChrome() {
         if (containsIgnoreCase(this.userAgent, "Chrome")) {
-            // TODO need preg_split on php init
             java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Chrome".toLowerCase())).split("/");
             if (result.length >= 2) {
                 java.lang.String[] aversion = result[1].split(" ");
-                this.setVersion(aversion[0]);
+                String ver = aversion[0].split(";")[0];
+                if (ver.length() == 0) {
+                    if (containsIgnoreCase(this.userAgent, "macintosh")) {
+                        ver = "Macintosh";
+                    }
+                }
+                this.setVersion(ver);
                 this.setBrowser(BROWSER_CHROME);
                 //Chrome on Android
                 if (containsIgnoreCase(this.userAgent, "Android")) {
