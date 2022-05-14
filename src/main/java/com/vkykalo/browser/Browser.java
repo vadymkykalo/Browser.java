@@ -1288,9 +1288,26 @@ public class Browser {
     protected java.lang.Boolean checkBrowserUCBrowser() {
         java.util.regex.Pattern PATTERN_UC = java.util.regex.Pattern.compile("UC ?Browser\\/?([\\d\\.]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcherUc = PATTERN_UC.matcher(this.userAgent);
-        if (matcherUc.find()) {
-            java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Browser".toLowerCase())).split("/");
-            this.setVersion(aversion.length >= 2 ? aversion[1] : "");
+        java.util.regex.Pattern PATTERN_UC_SLASH = java.util.regex.Pattern.compile("UC ?Browser/\\/?([\\d\\.]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
+        java.util.regex.Matcher matcherUcSlash = PATTERN_UC_SLASH.matcher(this.userAgent);
+        if (matcherUcSlash.find()) {
+            java.lang.String[] aversion = matcherUcSlash.group(0).toLowerCase().substring(matcherUcSlash.group(0).toLowerCase().indexOf("Browser".toLowerCase())).split("/");
+            this.setVersion(aversion.length >= 2 ? aversion[1].split(" ")[0] : "");
+            if (containsIgnoreCase(this.userAgent, "Mobile")) {
+                this.setMobile(true);
+            } else {
+                this.setTablet(true);
+            }
+            this.setBrowser(BROWSER_UCBROWSER);
+            return true;
+        } else if (matcherUc.find()) {
+            java.util.regex.Pattern PATTERN_NUMBER = java.util.regex.Pattern.compile("([\\d\\.]+)", java.util.regex.Pattern.CASE_INSENSITIVE);
+            java.util.regex.Matcher matcherNumber = PATTERN_NUMBER.matcher(matcherUc.group(0));
+            if (matcherNumber.find()) {
+                this.setVersion(matcherNumber.group(0));
+            } else {
+                this.setVersion("");
+            }
             if (containsIgnoreCase(this.userAgent, "Mobile")) {
                 this.setMobile(true);
             } else {
