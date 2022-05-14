@@ -1264,7 +1264,7 @@ public class Browser {
         if (!containsIgnoreCase(this.userAgent, "safari")) {
             if (matcher.find()) {
                 java.lang.String[] aversion = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Palemoon".toLowerCase())).split("/");
-                this.setVersion(aversion.length >= 2 ? aversion[1] : "");
+                this.setVersion(aversion.length >= 2 ? aversion[1].split(" ")[0] : "");
                 this.setBrowser(BROWSER_PALEMOON);
                 return true;
             } else if (matcherLiteral.find()) {

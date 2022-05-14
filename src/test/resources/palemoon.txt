@@ -363,8 +363,7 @@ Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:45.9) Gecko/20100101 Goanna/3.0 Fire
 Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:45.9) Gecko/20100101 Goanna/3.0 Firefox/45.9 PaleMoon/27.1.1	Browser	Palemoon	27.1.1	Windows	Windows 10		
 Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:3.0) Gecko/20100101 Goanna/20161117 PaleMoon/27.0.0	Browser	Palemoon	27.0.0	Windows	Windows 7		
 Mozilla/5.0 (Windows NT 6.1; rv:38.9) Gecko/20100101 Goanna/2.1 Firefox/38.9 PaleMoon/26.4.0	Browser	Palemoon	26.4.0	Windows	Windows 7		
-Mozilla/5.0 (X11; Linux i686; rv:38.9) Gecko/20100101 Goanna/2.1 Firefox/38.9 PaleMoon/26.4.0.1	Browser	Palemoon	26.4.0.1	Linux	Linux		
-Mozilla/5.0 (Windows; rv:MircoXP) Gecko/20100101 Firefox/99.9 PaleMoon/	Browser	Palemoon		unknown	unknown		
+Mozilla/5.0 (X11; Linux i686; rv:38.9) Gecko/20100101 Goanna/2.1 Firefox/38.9 PaleMoon/26.4.0.1	Browser	Palemoon	26.4.0.1	Linux	Linux
 Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.9) Gecko/20100101 Goanna/2.1 Firefox/38.9 PaleMoon/26.3.1	Browser	Palemoon	26.3.1	Windows	Windows 10		
 Mozilla/5.0 (Windows NT 5.1; rv:38.9) Gecko/20100101 Goanna/2.0 Firefox/38.9 PaleMoon/26.2.2	Browser	Palemoon	26.2.2	Windows	Windows XP		
 Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.9) Gecko/20100101 Goanna/2.0 Firefox/38.9 PaleMoon/26.2.1	Browser	Palemoon	26.2.1	Windows	Windows NT		
