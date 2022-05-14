@@ -13,24 +13,33 @@ public class CurlWgetTest {
 
     @Before
     public void setUp() throws Exception {
-        List<String> curlFirst = new ArrayList<>();
-        curlFirst.add("curl/7.37.1");
-        curlFirst.add(Browser.BROWSER_CURL);
-        curlFirst.add("7.37.1");
-        List<String> curlSecond = new ArrayList<>();
-        curlSecond.add("Wget/1.16 (darwin14.0.0)");
-        curlSecond.add(Browser.BROWSER_WGET);
-        curlSecond.add("1.16");
-        data.add(curlFirst);
-        data.add(curlSecond);
+        List<String> curl = new ArrayList<>();
+        curl.add("curl/7.37.1");
+        curl.add(Browser.BROWSER_CURL);
+        curl.add("7.37.1");
+
+        List<String> wget = new ArrayList<>();
+        wget.add("Wget/1.16 (darwin14.0.0)");
+        wget.add(Browser.BROWSER_WGET);
+        wget.add("1.16");
+
+        data.add(curl);
+        data.add(wget);
     }
 
     @Test
-    public void testCurlWgetUserAgent() {
-        for (List<String> row : data) {
-            Browser browser = new Browser(row.get(0));
-            Assert.assertEquals(row.get(1), browser.getBrowser());
-            Assert.assertEquals(row.get(2), browser.getVersion());
-        }
+    public void testWgetUserAgent() {
+        List<String> wget = data.get(0);
+        Browser browser = new Browser(wget.get(0));
+        Assert.assertEquals(wget.get(1), browser.getBrowser());
+        Assert.assertEquals(wget.get(2), browser.getVersion());
+    }
+
+    @Test
+    public void testCurlUserAgent() {
+        List<String> curl = data.get(0);
+        Browser browser = new Browser(curl.get(0));
+        Assert.assertEquals(curl.get(1), browser.getBrowser());
+        Assert.assertEquals(curl.get(2), browser.getVersion());
     }
 }
