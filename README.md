@@ -80,6 +80,11 @@ I based this solution off of Gary White's original work but have since replaced 
 
 ## Testing
 
+Run tests
+```bash
+mvn -Dtest="com.vkykalo.browser/*Test" test
+```
+
 Each file is tab delimited with the following fields:
 
 User Agent, User Agent Type, Browser, Version, Operating System, Operating System Version eg
