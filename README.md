@@ -92,3 +92,7 @@ User Agent, User Agent Type, Browser, Version, Operating System, Operating Syste
 Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16	Browser	Opera	12.16	Linux	Linux	
 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.186 Safari/535.1   Browser	Chrome 14.0.835.186 Macintosh OS X	10_7_2
 ```
+
+## Contributions
+
+Please feel free to open an [issue](https://github.com/vadymkykalo/Browser.java/issues) and support the product if you saw the benefit in it
