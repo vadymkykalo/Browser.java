@@ -5,10 +5,10 @@
     <groupId>com.vkykalo</groupId>
     <artifactId>browser</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <name>Parser user-agent</name>
 
-    <description>Parser user-agent string to object</description>
+    <description>A JAVA Class to detect a user's Browser. This encapsulation provides a breakdown of the browser and the version of the browser using the browser's user-agent string. This is not a guaranteed solution but provides an overall accurate way to detect what browser a user is using.</description>
     <url>https://github.com/vadymkykalo/Browser.java</url>
     <inceptionYear>2022</inceptionYear>
     <licenses>
@@ -38,15 +38,24 @@
         <url>https://github.com/vadymkykalo/Browser.java/issues</url>
     </issueManagement>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.5</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
