@@ -1,4 +1,4 @@
-package com.vkykalo.browser;
+package io.github.vadymkykalo.browser;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;

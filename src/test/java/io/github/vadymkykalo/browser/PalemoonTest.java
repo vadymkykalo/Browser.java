@@ -1,4 +1,4 @@
-package com.vkykalo.browser;
+package io.github.vadymkykalo.browser;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -8,16 +8,18 @@ import org.testng.annotations.Test;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
-public class BraveTest {
+public class PalemoonTest {
 
     private final List<Object[]> entries = new ArrayList<>();
 
     @BeforeTest
     public void setUp() throws Exception {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        File file = new File(classLoader.getResource("brave.txt").getFile());
+        File file = new File(classLoader.getResource("palemoon.txt").getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -34,12 +36,12 @@ public class BraveTest {
     }
 
     @DataProvider
-    public Object[][] getBraveData() {
+    public Object[][] getPalemoonData() {
         return entries.toArray(new Object[entries.size()][]);
     }
 
-    @Test(dataProvider = "getBraveData")
-    public void testBraveUserAgent(String userAgent, String type, String browserName, String version) {
+    @Test(dataProvider = "getPalemoonData")
+    public void testPalemoonUserAgent(String userAgent, String type, String browserName, String version) {
         Browser browser = new Browser(userAgent);
         Assert.assertEquals(browserName, browser.getBrowser());
         Assert.assertEquals(version, browser.getVersion());

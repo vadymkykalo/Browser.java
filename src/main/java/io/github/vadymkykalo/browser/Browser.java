@@ -14,7 +14,7 @@
  * the License.
  ******************************************************************************/
 
-package com.vkykalo.browser;
+package io.github.vadymkykalo.browser;
 
 /**
  * File: Browser.java

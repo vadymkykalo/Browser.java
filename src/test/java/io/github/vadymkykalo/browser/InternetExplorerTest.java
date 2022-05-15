@@ -1,5 +1,4 @@
-package com.vkykalo.browser;
-
+package io.github.vadymkykalo.browser;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -13,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class FirefoxMobileTest {
+public class InternetExplorerTest {
 
     private final List<Object[]> entries = new ArrayList<>();
 
     @BeforeTest
     public void setUp() throws Exception {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        File file = new File(classLoader.getResource("firefox-mobile.txt").getFile());
+        File file = new File(classLoader.getResource("ie.txt").getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -37,12 +36,12 @@ public class FirefoxMobileTest {
     }
 
     @DataProvider
-    public Object[][] getFirefoxMobileData() {
+    public Object[][] getIeData() {
         return entries.toArray(new Object[entries.size()][]);
     }
 
-    @Test(dataProvider = "getFirefoxMobileData")
-    public void testFirefoxMobileUserAgent(String userAgent, String type, String browserName, String version) {
+    @Test(dataProvider = "getIeData")
+    public void testIeUserAgent(String userAgent, String type, String browserName, String version) {
         Browser browser = new Browser(userAgent);
         Assert.assertEquals(browserName, browser.getBrowser());
         Assert.assertEquals(version, browser.getVersion());

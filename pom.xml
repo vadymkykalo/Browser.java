@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.vkykalo</groupId>
+    <groupId>io.github.vadymkykalo</groupId>
     <artifactId>browser</artifactId>
     <packaging>jar</packaging>
     <version>0.1.2</version>
@@ -74,7 +74,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.vkykalo.browser.Browser</mainClass>
+                                    <mainClass>io.github.vadymkykalo.browser.Browser</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
