@@ -6,10 +6,20 @@ This repository based on https://github.com/cbschuld/Browser.php and was rewritt
 
 ## Typical Usage:
 
-```java
+```java 
 String userAgent = "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16";
 Browser browser = new Browser(userAgent);
 System.out.println("You have Browser: " + browser);
+```
+
+## Maven dependency
+
+```
+<dependency>
+    <groupId>io.github.vadymkykalo</groupId>
+    <artifactId>browser</artifactId>
+    <version>0.1.2</version>
+</dependency>
 ```
 
 ## Browser Detection
@@ -82,7 +92,7 @@ I based this solution off of Gary White's original work but have since replaced 
 
 Run tests
 ```bash
-mvn -Dtest="com.vkykalo.browser/*Test" test
+mvn -Dtest="io.github.vadymkykalo.browser/*Test" test
 ```
 
 Each file is tab delimited with the following fields:
