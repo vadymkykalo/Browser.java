@@ -14,7 +14,7 @@ System.out.println("You have Browser: " + browser);
 
 ## Maven dependency
 
-```
+```xml 
 <dependency>
     <groupId>io.github.vadymkykalo</groupId>
     <artifactId>browser</artifactId>
