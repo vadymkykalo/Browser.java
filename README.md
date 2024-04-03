@@ -10,6 +10,40 @@ This repository based on https://github.com/cbschuld/Browser.php and was rewritt
 String userAgent = "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16";
 Browser browser = new Browser(userAgent);
 System.out.println("You have Browser: " + browser);
+System.out.println("browser.getBrowser(): " + browser.getBrowser());
+System.out.println("browser.getPlatform(): " + browser.getPlatform());
+System.out.println("browser.getVersion(): " + browser.getVersion());
+System.out.println("browser.getAolVersion(): " + browser.getAolVersion());
+System.out.println("browser.getUserAgent(): " + browser.getUserAgent());
+System.out.println("browser.isMobile(): " + browser.isMobile());
+System.out.println("browser.isBrowser(browser.getBrowser()): " + browser.isBrowser(browser.getBrowser()));
+System.out.println("browser.isMobile(): " + browser.isMobile());
+System.out.println("browser.isRobot(): " + browser.isRobot());
+System.out.println("browser.isAol(): " + browser.isAol());
+System.out.println("browser.isFacebook(): " + browser.isFacebook());
+System.out.println("browser.isChromeFrame(): " + browser.isChromeFrame());
+System.out.println("browser.isTablet(): " + browser.isTablet());
+```
+and we get the following result
+
+```text
+You have Browser: Browser Name: Opera 
+Browser Version: 12.16 
+Browser User Agent String: Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16 
+Platform: Linux
+browser.getBrowser(): Opera
+browser.getPlatform(): Linux
+browser.getVersion(): 12.16
+browser.getAolVersion(): unknown
+browser.getUserAgent(): Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16
+browser.isMobile(): false
+browser.isBrowser(browser.getBrowser()): true
+browser.isMobile(): false
+browser.isRobot(): false
+browser.isAol(): false
+browser.isFacebook(): false
+browser.isChromeFrame(): false
+browser.isTablet(): false
 ```
 
 ## Maven dependency
