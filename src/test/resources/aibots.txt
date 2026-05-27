@@ -1,0 +1,6 @@
+"Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.0; +https://openai.com/gptbot"	Bot	GPTBot	1.0
+"Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot"	Bot	ChatGPT-User	1.0
+"Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)"	Bot	ClaudeBot	1.0
+"Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)"	Bot	PerplexityBot	1.0
+"Mozilla/5.0 (compatible; Applebot/0.1; +http://www.apple.com/go/applebot)"	Bot	Applebot	0.1
+"CCBot/2.0 (https://commoncrawl.org/faq/)"	Bot	CCBot	2.0

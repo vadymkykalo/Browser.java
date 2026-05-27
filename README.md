@@ -52,7 +52,7 @@ browser.isTablet(): false
 <dependency>
     <groupId>io.github.vadymkykalo</groupId>
     <artifactId>browser</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -90,6 +90,19 @@ This solution identifies the following Browsers and does a best-guess on the ver
 * Yahoo!.s Slurp(`Browser.BROWSER_SLURP`)
 * W3C.s Validator(`Browser.BROWSER_W3CVALIDATOR`)
 * BlackBerry(`Browser.BROWSER_BLACKBERRY`)
+* Arc (`Browser.BROWSER_ARC`)
+* DuckDuckGo (`Browser.BROWSER_DUCKDUCKGO`)
+* Naver Whale (`Browser.BROWSER_WHALE`)
+* Tor Browser (`Browser.BROWSER_TOR`)
+
+### AI / LLM crawlers (flagged as `isRobot()`)
+
+* OpenAI GPTBot (`Browser.BROWSER_GPTBOT`)
+* OpenAI ChatGPT-User (`Browser.BROWSER_CHATGPT_USER`)
+* Anthropic ClaudeBot (`Browser.BROWSER_CLAUDEBOT`)
+* PerplexityBot (`Browser.BROWSER_PERPLEXITYBOT`)
+* Apple Applebot (`Browser.BROWSER_APPLEBOT`)
+* Common Crawl CCBot (`Browser.BROWSER_CCBOT`)
 
 ## Operating System Detection
 
@@ -111,6 +124,7 @@ This solution identifies the following Operating Systems:
 * SunOS (`Browser.PLATFORM_SUNOS`)
 * OpenSolaris (`Browser.PLATFORM_OPENSOLARIS`)
 * iPad (`Browser.PLATFORM_IPAD`)
+* HarmonyOS (`Browser.PLATFORM_HARMONYOS`)
 
 ## History and Legacy
 

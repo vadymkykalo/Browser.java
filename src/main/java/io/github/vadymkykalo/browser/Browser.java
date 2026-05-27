@@ -108,6 +108,18 @@ public class Browser {
     public static final java.lang.String BROWSER_I_FRAME = "Iframely";
     public static final java.lang.String BROWSER_COCOA = "CocoaRestClient";
 
+    public static final java.lang.String BROWSER_ARC = "Arc"; // https://arc.net/
+    public static final java.lang.String BROWSER_DUCKDUCKGO = "DuckDuckGo"; // https://duckduckgo.com/
+    public static final java.lang.String BROWSER_WHALE = "Whale"; // https://whale.naver.com/
+    public static final java.lang.String BROWSER_TOR = "TorBrowser"; // https://www.torproject.org/
+
+    public static final java.lang.String BROWSER_GPTBOT = "GPTBot"; // https://platform.openai.com/docs/gptbot
+    public static final java.lang.String BROWSER_CHATGPT_USER = "ChatGPT-User"; // https://platform.openai.com/docs/bots
+    public static final java.lang.String BROWSER_CLAUDEBOT = "ClaudeBot"; // https://www.anthropic.com/
+    public static final java.lang.String BROWSER_PERPLEXITYBOT = "PerplexityBot"; // https://www.perplexity.ai/
+    public static final java.lang.String BROWSER_APPLEBOT = "Applebot"; // https://support.apple.com/en-us/119829
+    public static final java.lang.String BROWSER_CCBOT = "CCBot"; // https://commoncrawl.org/
+
     public static final java.lang.String PLATFORM_UNKNOWN = "unknown";
     public static final java.lang.String PLATFORM_WINDOWS = "Windows";
     public static final java.lang.String PLATFORM_WINDOWS_CE = "Windows CE";
@@ -136,6 +148,7 @@ public class Browser {
     public static final java.lang.String PLATFORM_JAVA_ANDROID = "Java/Android";
     public static final java.lang.String PLATFORM_POSTMAN = "Postman";
     public static final java.lang.String PLATFORM_I_FRAME = "Iframely";
+    public static final java.lang.String PLATFORM_HARMONYOS = "HarmonyOS"; // https://www.harmonyos.com/
 
     public static final java.lang.String OPERATING_SYSTEM_UNKNOWN = "unknown";
 
@@ -412,6 +425,12 @@ public class Browser {
                 this.checkBrowserVivaldi() ||
                 this.checkBrowserYandex() ||
                 this.checkBrowserPalemoon() ||
+                // Tor must be checked before Firefox (Tor Browser is built on Firefox)
+                this.checkBrowserTor() ||
+                // DuckDuckGo / Whale / Arc must be checked before Chrome/Safari (they all reuse those engines)
+                this.checkBrowserDuckDuckGo() ||
+                this.checkBrowserWhale() ||
+                this.checkBrowserArc() ||
                 this.checkBrowserFirefox() ||
                 this.checkBrowserChrome() ||
                 this.checkBrowserOmniWeb() ||
@@ -429,6 +448,14 @@ public class Browser {
                 this.checkBrowserMSNBot() ||
                 this.checkBrowserBingBot() ||
                 this.checkBrowserSlurp() ||
+
+                // AI bots (must be checked early to avoid being captured by Mozilla)
+                this.checkBrowserGPTBot() ||
+                this.checkBrowserChatGptUser() ||
+                this.checkBrowserClaudeBot() ||
+                this.checkBrowserPerplexityBot() ||
+                this.checkBrowserApplebot() ||
+                this.checkBrowserCCBot() ||
 
                 // Yandex bots
                 this.checkBrowserYandexBot() ||
@@ -861,22 +888,25 @@ public class Browser {
      * @return boolean True if the browser is Edge otherwise false
      */
     protected java.lang.Boolean checkBrowserEdge() {
-        java.lang.String name = containsIgnoreCase(this.userAgent, "Edge/") ?
-                "Edge" :
-                containsIgnoreCase(this.userAgent, "Edg/") || containsIgnoreCase(this.userAgent, "Edg/") ? "Edg" : "";
-        if (name.length() == 0 && containsIgnoreCase(this.userAgent, "EdgA/")) {
-            name = "Edga";
-        }
-        if (name.length() > 1) {
-            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf(name.toLowerCase())).split("/");
-            if (result.length >= 2) {
-                java.lang.String[] aversion = result[1].split(" ");
-                this.setVersion(aversion[0]);
-                this.setBrowser(BROWSER_EDGE);
-                if (containsIgnoreCase(this.userAgent, "Windows Phone") || containsIgnoreCase(this.userAgent, "Android")) {
-                    this.setMobile(true);
+        // Check for various Edge patterns: Edge/, Edg/, EdgA/, EdgiOS/
+        java.lang.String[] edgePatterns = {"Edge/", "Edg/", "EdgA/", "EdgiOS/"};
+        for (java.lang.String pattern : edgePatterns) {
+            if (containsIgnoreCase(this.userAgent, pattern)) {
+                int idx = this.userAgent.toLowerCase().indexOf(pattern.toLowerCase());
+                java.lang.String[] result = this.userAgent.toLowerCase().substring(idx).split("/");
+                if (result.length >= 2) {
+                    java.lang.String[] aversion = result[1].split(" ");
+                    this.setVersion(aversion[0]);
+                    this.setBrowser(BROWSER_EDGE);
+                    // Set mobile flag for mobile Edge variants
+                    if (containsIgnoreCase(this.userAgent, "Windows Phone")
+                            || containsIgnoreCase(this.userAgent, "Android")
+                            || containsIgnoreCase(this.userAgent, "EdgA/")
+                            || containsIgnoreCase(this.userAgent, "EdgiOS/")) {
+                        this.setMobile(true);
+                    }
+                    return true;
                 }
-                return true;
             }
         }
         return false;
@@ -1500,10 +1530,15 @@ public class Browser {
      */
     protected java.lang.Boolean checkBrowserSafari() {
         if (containsIgnoreCase(this.userAgent, "Safari") && !containsIgnoreCase(this.userAgent, "iPhone") && !containsIgnoreCase(this.userAgent, "iPod")) {
-            java.lang.String[] result = this.userAgent.toLowerCase().substring(this.userAgent.toLowerCase().indexOf("Version".toLowerCase())).split("/");
-            if (result.length >= 2) {
-                java.lang.String[] aversion = result[1].split(" ");
-                this.setVersion(aversion.length >= 1 ? aversion[0] : "");
+            int versionIdx = this.userAgent.toLowerCase().indexOf("Version".toLowerCase());
+            if (versionIdx >= 0) {
+                java.lang.String[] result = this.userAgent.toLowerCase().substring(versionIdx).split("/");
+                if (result.length >= 2) {
+                    java.lang.String[] aversion = result[1].split(" ");
+                    this.setVersion(aversion.length >= 1 ? aversion[0] : "");
+                } else {
+                    this.setVersion(VERSION_UNKNOWN);
+                }
             } else {
                 this.setVersion(VERSION_UNKNOWN);
             }
@@ -1820,7 +1855,9 @@ public class Browser {
      * Determine the user's platform
      */
     protected void checkPlatform() {
-        if (containsIgnoreCase(this.userAgent, "windows")) {
+        if (containsIgnoreCase(this.userAgent, "HarmonyOS") || containsIgnoreCase(this.userAgent, "OpenHarmony")) {
+            this.platform = PLATFORM_HARMONYOS;
+        } else if (containsIgnoreCase(this.userAgent, "windows")) {
             this.platform = PLATFORM_WINDOWS;
         } else if (containsIgnoreCase(this.userAgent, "iPad")) {
             this.platform = PLATFORM_IPAD;
@@ -1877,6 +1914,134 @@ public class Browser {
         } else if (containsIgnoreCase(this.userAgent, "Iframely")) {
             this.platform = PLATFORM_I_FRAME;
         }
+    }
+
+    /**
+     * Helper that detects a browser/bot by a "Token/version" pattern in the User-Agent.
+     * Used by the simple new detectors (Arc, DuckDuckGo, Whale, Tor, AI bots).
+     *
+     * @param token        the case-insensitive token to look for (e.g. "GPTBot", "Arc/")
+     * @param browserName  constant to assign as the browser name when matched
+     * @param isRobot      whether to mark this UA as a robot
+     * @param isMobile     whether to mark this UA as mobile
+     * @return true if matched, otherwise false
+     */
+    private boolean detectByToken(java.lang.String token, java.lang.String browserName, boolean isRobot, boolean isMobile) {
+        if (!containsIgnoreCase(this.userAgent, token)) {
+            return false;
+        }
+        int idx = this.userAgent.toLowerCase().indexOf(token.toLowerCase());
+        java.lang.String[] result = this.userAgent.toLowerCase().substring(idx).split("/");
+        if (result.length >= 2) {
+            java.lang.String[] aversion = result[1].split(" ");
+            this.setVersion(aversion[0].replace(";", "").replace(")", ""));
+        } else {
+            this.setVersion(VERSION_UNKNOWN);
+        }
+        this.setBrowser(browserName);
+        if (isRobot) {
+            this.setRobot(true);
+        }
+        if (isMobile) {
+            this.setMobile(true);
+        }
+        return true;
+    }
+
+    /**
+     * Determine if the browser is Arc (https://arc.net/) or not
+     * @return boolean True if the browser is Arc otherwise false
+     */
+    protected java.lang.Boolean checkBrowserArc() {
+        return detectByToken("Arc/", BROWSER_ARC, false, false);
+    }
+
+    /**
+     * Determine if the browser is the DuckDuckGo browser (https://duckduckgo.com/) or not
+     * @return boolean True if the browser is DuckDuckGo otherwise false
+     */
+    protected java.lang.Boolean checkBrowserDuckDuckGo() {
+        if (detectByToken("DuckDuckGo/", BROWSER_DUCKDUCKGO, false, false)) {
+            if (containsIgnoreCase(this.userAgent, "iPhone") || containsIgnoreCase(this.userAgent, "Android")) {
+                this.setMobile(true);
+            } else if (containsIgnoreCase(this.userAgent, "iPad")) {
+                this.setTablet(true);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is the Naver Whale browser (https://whale.naver.com/) or not
+     * @return boolean True if the browser is Whale otherwise false
+     */
+    protected java.lang.Boolean checkBrowserWhale() {
+        if (detectByToken("Whale/", BROWSER_WHALE, false, false)) {
+            if (containsIgnoreCase(this.userAgent, "Mobile")) {
+                this.setMobile(true);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the browser is Tor Browser (https://www.torproject.org/) or not.
+     * Tor Browser usually mimics Firefox ESR; this detector only fires when the
+     * UA explicitly contains "TorBrowser/".
+     * @return boolean True if the browser is Tor Browser otherwise false
+     */
+    protected java.lang.Boolean checkBrowserTor() {
+        return detectByToken("TorBrowser/", BROWSER_TOR, false, false);
+    }
+
+    /**
+     * Determine if the request is from OpenAI's GPTBot crawler.
+     * @return boolean True if the UA is GPTBot otherwise false
+     */
+    protected java.lang.Boolean checkBrowserGPTBot() {
+        return detectByToken("GPTBot", BROWSER_GPTBOT, true, false);
+    }
+
+    /**
+     * Determine if the request is from OpenAI's on-demand ChatGPT-User fetcher.
+     * @return boolean True if the UA is ChatGPT-User otherwise false
+     */
+    protected java.lang.Boolean checkBrowserChatGptUser() {
+        return detectByToken("ChatGPT-User", BROWSER_CHATGPT_USER, true, false);
+    }
+
+    /**
+     * Determine if the request is from Anthropic's ClaudeBot crawler.
+     * @return boolean True if the UA is ClaudeBot otherwise false
+     */
+    protected java.lang.Boolean checkBrowserClaudeBot() {
+        return detectByToken("ClaudeBot", BROWSER_CLAUDEBOT, true, false);
+    }
+
+    /**
+     * Determine if the request is from PerplexityBot crawler.
+     * @return boolean True if the UA is PerplexityBot otherwise false
+     */
+    protected java.lang.Boolean checkBrowserPerplexityBot() {
+        return detectByToken("PerplexityBot", BROWSER_PERPLEXITYBOT, true, false);
+    }
+
+    /**
+     * Determine if the request is from Apple's Applebot crawler.
+     * @return boolean True if the UA is Applebot otherwise false
+     */
+    protected java.lang.Boolean checkBrowserApplebot() {
+        return detectByToken("Applebot", BROWSER_APPLEBOT, true, false);
+    }
+
+    /**
+     * Determine if the request is from Common Crawl's CCBot.
+     * @return boolean True if the UA is CCBot otherwise false
+     */
+    protected java.lang.Boolean checkBrowserCCBot() {
+        return detectByToken("CCBot", BROWSER_CCBOT, true, false);
     }
 
     private boolean containsIgnoreCase(String str, String searchStr)     {
