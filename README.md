@@ -52,7 +52,7 @@ browser.isTablet(): false
 <dependency>
     <groupId>io.github.vadymkykalo</groupId>
     <artifactId>browser</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
@@ -82,8 +82,6 @@ This solution identifies the following Browsers and does a best-guess on the ver
 * Lynx (`Browser.BROWSER_LYNX`)
 * Safari (`Browser.BROWSER_SAFARI`)
 * Playstation (`Browser.BROWSER_PLAYSTATION`)
-* iPhone (`Browser.BROWSER_IPHONE`)
-* iPod (`Browser.BROWSER_IPOD`)
 * Google.s Android(`Browser.BROWSER_ANDROID`)
 * Google.s Chrome(`Browser.BROWSER_CHROME`)
 * GoogleBot(`Browser.BROWSER_GOOGLEBOT`)
@@ -115,15 +113,13 @@ This solution identifies the following Operating Systems:
 * Android (`Browser.PLATFORM_ANDROID`)
 * OS/2 (`Browser.PLATFORM_OS2`)
 * BeOS (`Browser.PLATFORM_BEOS`)
-* iPhone (`Browser.PLATFORM_IPHONE`)
-* iPod (`Browser.PLATFORM_IPOD`)
+* iOS: iPhone, iPad, iPod (`Browser.PLATFORM_IOS`)
 * BlackBerry (`Browser.PLATFORM_BLACKBERRY`)
 * FreeBSD (`Browser.PLATFORM_FREEBSD`)
 * OpenBSD (`Browser.PLATFORM_OPENBSD`)
 * NetBSD (`Browser.PLATFORM_NETBSD`)
 * SunOS (`Browser.PLATFORM_SUNOS`)
 * OpenSolaris (`Browser.PLATFORM_OPENSOLARIS`)
-* iPad (`Browser.PLATFORM_IPAD`)
 * HarmonyOS (`Browser.PLATFORM_HARMONYOS`)
 
 ## History and Legacy

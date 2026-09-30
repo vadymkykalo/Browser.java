@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0] - 2026-10-01
+
+### Changed
+- iPhone, iPad and iPod report the browser that actually runs, `Safari` for
+  Safari (Chrome on iOS was already `Chrome`), and `iOS` as the platform.
+  Before, the device name came back as both browser and platform. Whether it
+  is a phone or a tablet is `isMobile()` / `isTablet()`.
+- `BROWSER_IPHONE`, `BROWSER_IPAD`, `BROWSER_IPOD`, `PLATFORM_IPHONE`,
+  `PLATFORM_IPAD` and `PLATFORM_IPOD` are deprecated and no longer returned.
+  Code comparing against them should use `BROWSER_SAFARI` and `PLATFORM_IOS`.
+
 ## [0.2.0] - 2026-05-23
 
 ### Fixed
