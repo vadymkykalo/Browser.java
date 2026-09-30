@@ -63,8 +63,11 @@ public class Browser {
     public static final java.lang.String BROWSER_AMAYA = "Amaya"; // http://www.w3.org/Amaya/
     public static final java.lang.String BROWSER_LYNX = "Lynx"; // http://en.wikipedia.org/wiki/Lynx
     public static final java.lang.String BROWSER_SAFARI = "Safari"; // http://apple.com
+    @Deprecated
     public static final java.lang.String BROWSER_IPHONE = "iPhone"; // http://apple.com
+    @Deprecated
     public static final java.lang.String BROWSER_IPOD = "iPod"; // http://apple.com
+    @Deprecated
     public static final java.lang.String BROWSER_IPAD = "iPad"; // http://apple.com
     public static final java.lang.String BROWSER_CHROME = "Chrome"; // http://www.google.com/chrome
     public static final java.lang.String BROWSER_ANDROID = "Android"; // http://www.android.com/
@@ -127,9 +130,13 @@ public class Browser {
     public static final java.lang.String PLATFORM_LINUX = "Linux";
     public static final java.lang.String PLATFORM_OS2 = "OS/2";
     public static final java.lang.String PLATFORM_BEOS = "BeOS";
+    @Deprecated
     public static final java.lang.String PLATFORM_IPHONE = "iPhone";
+    @Deprecated
     public static final java.lang.String PLATFORM_IPOD = "iPod";
+    @Deprecated
     public static final java.lang.String PLATFORM_IPAD = "iPad";
+    public static final java.lang.String PLATFORM_IOS = "iOS";
     public static final java.lang.String PLATFORM_BLACKBERRY = "BlackBerry";
     public static final java.lang.String PLATFORM_NOKIA = "Nokia";
     public static final java.lang.String PLATFORM_FREEBSD = "FreeBSD";
@@ -1689,7 +1696,7 @@ public class Browser {
     protected java.lang.Boolean checkBrowseriPhone() {
         if (containsIgnoreCase(this.userAgent, "iPhone")) {
             this.setVersion(VERSION_UNKNOWN);
-            this.setBrowser(BROWSER_IPHONE);
+            this.setBrowser(BROWSER_SAFARI);
             this.getSafariVersionOnIos();
             this.getChromeVersionOnIos();
             this.checkForFacebookIos();
@@ -1706,7 +1713,7 @@ public class Browser {
     protected java.lang.Boolean checkBrowseriPad() {
         if (containsIgnoreCase(this.userAgent, "iPad")) {
             this.setVersion(VERSION_UNKNOWN);
-            this.setBrowser(BROWSER_IPAD);
+            this.setBrowser(BROWSER_SAFARI);
             this.getSafariVersionOnIos();
             this.getChromeVersionOnIos();
             this.checkForFacebookIos();
@@ -1723,7 +1730,7 @@ public class Browser {
     protected java.lang.Boolean checkBrowseriPod() {
         if (containsIgnoreCase(this.userAgent, "iPod")) {
             this.setVersion(VERSION_UNKNOWN);
-            this.setBrowser(BROWSER_IPOD);
+            this.setBrowser(BROWSER_SAFARI);
             this.getSafariVersionOnIos();
             this.getChromeVersionOnIos();
             this.checkForFacebookIos();
@@ -1859,12 +1866,9 @@ public class Browser {
             this.platform = PLATFORM_HARMONYOS;
         } else if (containsIgnoreCase(this.userAgent, "windows")) {
             this.platform = PLATFORM_WINDOWS;
-        } else if (containsIgnoreCase(this.userAgent, "iPad")) {
-            this.platform = PLATFORM_IPAD;
-        } else if (containsIgnoreCase(this.userAgent, "iPod")) {
-            this.platform = PLATFORM_IPOD;
-        } else if (containsIgnoreCase(this.userAgent, "iPhone")) {
-            this.platform = PLATFORM_IPHONE;
+        } else if (containsIgnoreCase(this.userAgent, "iPad") || containsIgnoreCase(this.userAgent, "iPod")
+                || containsIgnoreCase(this.userAgent, "iPhone")) {
+            this.platform = PLATFORM_IOS;
         } else if (containsIgnoreCase(this.userAgent, "mac")) {
             this.platform = PLATFORM_APPLE;
         } else if (containsIgnoreCase(this.userAgent, "android")) {
@@ -1900,7 +1904,7 @@ public class Browser {
         } else if (containsIgnoreCase(this.userAgent, "Roku")) {
             this.platform = PLATFORM_ROKU;
         } else if (containsIgnoreCase(this.userAgent, "iOS")) {
-            this.platform = PLATFORM_IPHONE + "/" + PLATFORM_IPAD;
+            this.platform = PLATFORM_IOS;
         } else if (containsIgnoreCase(this.userAgent, "tvOS")) {
             this.platform = PLATFORM_APPLE_TV;
         } else if (containsIgnoreCase(this.userAgent, "curl")) {
